@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ariel S. Olarve | Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4B5D67;
+      --accent: #88A4D4;
+      --light-bg: #F4F6FA;
+      --white: #fff;
+      --text-dark: #1a1a1a;
+      --text-muted: #555;
+    }
+    /* Target only bingo.jpg */
+.project-card img[alt="Simple Bingo Game"] {
+  width: 90%;
+  height: 200px;
+  object-fit: contain;
+}
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(120deg, var(--primary), var(--accent));
+      color: var(--white);
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+
+    header img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--white);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      margin-top: 1rem;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      color: var(--white);
+      font-size: 1.6rem;
+      margin: 0 0.5rem;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .left-photo {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .left-photo img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: all 0.6s ease;
+    }
+
+    .left-photo img.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .skills-section {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .skills-section h2 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    .skill {
+      margin-bottom: 1rem;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .progress-bar {
+      background: #e0e0e0;
+      border-radius: 30px;
+      overflow: hidden;
+      height: 12px;
+    }
+
+    .progress {
+      height: 100%;
+      background: var(--accent);
+      width: 0;
+      transition: width 1.5s ease-out;
+    }
+
+    .info-box {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      padding: 2rem;
+    }
+
+    .info-box h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .info-block h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .info-block ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .info-block li {
+      padding: 4px 0;
+      font-size: 0.95rem;
+    }
+
+    .portfolio {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Updated Project Card Styles */
+    .project-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+      height: 420px;
+      justify-content: flex-start;
+    }
+
+    /* Hover enlarge effect */
+    .project-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+      z-index: 10;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 220px; /* slightly bigger for better view */
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease;
+    }
+
+    /* Image zoom on hover */
+    .project-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .project-description {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 900px) {
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header img {
+        width: 140px;
+        height: 140px;
+      }
+
+      .info-box {
+        padding: 1.5rem;
+      }
+
+      .portfolio {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="ao1.jpeg" alt="Ariel S. Olarve">
+    <h1>Ariel S. Olarve</h1>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/share/16k5FgEJ9f/" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/ao_aryel/profilecard/?igsh=MWJ0YWpocjI0b3M4MA==" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <section class="main-container">
+    <!-- Left Side -->
+    <div class="left-photo">
+      <img src="ao2.jpeg" alt="Me" class="scroll-fade">
+
+      <!-- Technical Skills -->
+      <div class="skills-section">
+        <h2>Technical Skills</h2>
+        <div class="skill"><div class="skill-name">Java - 85%</div><div class="progress-bar"><div class="progress" style="width: 85%"></div></div></div>
+        <div class="skill"><div class="skill-name">Python - 70%</div><div class="progress-bar"><div class="progress" style="width: 70%"></div></div></div>
+        <div class="skill"><div class="skill-name">HTML - 95%</div><div class="progress-bar"><div class="progress" style="width: 95%"></div></div></div>
+        <div class="skill"><div class="skill-name">CSS - 90%</div><div class="progress-bar"><div class="progress" style="width: 90%"></div></div></div>
+        <div class="skill"><div class="skill-name">JavaScript - 70%</div><div class="progress-bar"><div class="progress" style="width: 70%"></div></div></div>
+        <div class="skill"><div class="skill-name">Flutter - 90%</div><div class="progress-bar"><div class="progress" style="width: 90%"></div></div></div>
+        <div class="skill"><div class="skill-name">Dart - 85%</div><div class="progress-bar"><div class="progress" style="width: 85%"></div></div></div>
+        <div class="skill"><div class="skill-name">SQlite - 90%</div><div class="progress-bar"><div class="progress" style="width: 90%"></div></div></div>
+        <div class="skill"><div class="skill-name">C - 70%</div><div class="progress-bar"><div class="progress" style="width: 70%"></div></div></div>
+        <div class="skill"><div class="skill-name">C++ - 70%</div><div class="progress-bar"><div class="progress" style="width: 70%"></div></div></div>
+      </div>
+    </div>
+
+    <!-- Right Side Info -->
+    <div class="info-box">
+      <h2>Personal Information</h2>
+      <div class="info-grid">
+        <div class="info-block">
+          <h3>Contact</h3>
+          <ul>
+            <li>📞 +63 936 402 7536</li>
+            <li>📧 olarveariel47@gmail.com</li>
+            <li>📍 187 Sinaliw Malaki, Alfonso, Cavite</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Education</h3>
+          <ul>
+            <li><strong>Tertiary:</strong> City College of Tagaytay</li>
+            <li>Bachelor of Science in IT (2021–2025)</li>
+            <li><strong>Secondary:</strong> Kaytitinga Integrated School (2014–2020)</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Details</h3>
+          <ul>
+            <li>Age: 23</li>
+            <li>Gender: Male</li>
+            <li>Birthdate: Dec 29, 2001</li>
+            <li>Place of Birth: Valenzuela City</li>
+            <li>Nationality: Filipino</li>
+            <li>Status: Single</li>
+            <li>Height: 5’6</li>
+          </ul>
+        </div>
+        <div class="info-block">
+          <h3>Skills</h3>
+          <ul>
+            <li>Basic programming</li>
+            <li>Troubleshooting</li>
+            <li>Windows installation</li>
+            <li>Web design</li>
+            <li>Willing to learn</li>
+            <li>Time management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="portfolio" id="projects">
+    <!-- Project One -->
+    <div class="project-card" onclick="openProject('https://github.com/yourproject1')">
+      <img src="bingo.jpg" alt="Simple Bingo Game" loading="lazy">
+      <div class="project-title">Simple Bingo Game</div>
+      <div class="project-description">
+        A basic Bingo game made with Flutter and Dart. The player can tap Generate Number to get a random bingo number. Each number is unique until all are used. Tapping New Game resets everything so the player can start again. The app has a clean and easy-to-use design for quick play.
+      </div>
+    </div>
+
+    
+    <!-- Project Two -->
+    <div class="project-card" onclick="openProject('https://github.com/yourproject2')">
+      <img src="travelmate.jpg" alt="TravelMate Landing Page" loading="lazy">
+      <div class="project-title">TravelMate</div>
+      <div class="project-description">
+        A basic landing page created with HTML, CSS, and JavaScript. It has input fields for the user’s email and password, along with a Login button. The page is styled for a clean, modern look, and JavaScript is used to validate the inputs before allowing the user to log in.
+      </div>
+    </div>
+
+    <!-- Project Three -->
+    <div class="project-card" onclick="openProject('https://github.com/yourproject3')">
+      <img src="calcu.jpg" alt="Calculator" loading="lazy">
+      <div class="project-title">Calculator</div>
+      <div class="project-description">
+        Calculator — A basic calculator built with HTML, CSS, and JavaScript. It allows the user to perform simple arithmetic operations like addition, subtraction, multiplication, and division. The design is clean and user-friendly, and JavaScript handles all the calculations when buttons are clicked.
+      </div>
+    </div>
+  </section>
+  </section>
+
+  <!-- Scroll & Progress Animation Script -->
+  <script>
+    const fadeIn = document.querySelectorAll('.scroll-fade');
+    const progressBars = document.querySelectorAll('.progress');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.3 });
+
+    fadeIn.forEach(el => observer.observe(el));
+    progressBars.forEach(el => {
+      const width = el.style.width;
+      el.style.width = '0';
+      setTimeout(() => {
+        el.style.width = width;
+      }, 100);
+    });
+
+    function openProject(url) {
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
